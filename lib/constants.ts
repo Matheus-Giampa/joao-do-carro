@@ -1,4 +1,4 @@
-import type { LeadSource, LeadStatus, SortOption, VehicleStatus } from "@/types";
+import type { LeadSource, LeadStatus, SortOption, StaffRole, VehicleStatus } from "@/types";
 
 export const FUEL_OPTIONS = ["Flex", "Gasolina", "Etanol", "Diesel", "Híbrido", "Elétrico", "GNV"] as const;
 
@@ -73,3 +73,10 @@ export const INSTALLMENT_OPTIONS = [12, 24, 36, 48, 60] as const;
 export const PAGE_SIZE = 12;
 
 export const STORAGE_BUCKET = process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET || "media";
+
+export const ROLE_LABEL: Record<StaffRole, string> = { admin: "Administrador", funcionario: "Funcionário" };
+
+export const ROLE_DESCRIPTION: Record<StaffRole, string> = {
+  admin: "Acesso total: anúncios, leads, configurações da loja e equipe.",
+  funcionario: "Cadastra, edita e exclui anúncios e atende os leads. Não mexe nas configurações nem na equipe.",
+};

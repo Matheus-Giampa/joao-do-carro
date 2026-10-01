@@ -3,20 +3,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Car, ExternalLink, LayoutDashboard, LogOut, Menu, PlusCircle, Settings, Users, X } from "lucide-react";
+import { Car, ExternalLink, LayoutDashboard, LogOut, Menu, PlusCircle, Settings, ShieldCheck, Users, X } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { signOut } from "@/app/actions/auth";
+import { ROLE_LABEL } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import type { StaffRole } from "@/types";
 
+/** adminOnly: itens que o funcionário não vê (e que o servidor também bloqueia). */
 const NAV = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/veiculos", label: "Veículos", icon: Car },
   { href: "/admin/veiculos/novo", label: "Adicionar veículo", icon: PlusCircle, exact: true },
   { href: "/admin/leads", label: "Leads", icon: Users },
-  { href: "/admin/configuracoes", label: "Configurações", icon: Settings },
+  { href: "/admin/equipe", label: "Equipe", icon: ShieldCheck, adminOnly: true },
+  { href: "/admin/configuracoes", label: "Configurações", icon: Settings, adminOnly: true },
 ];
 
-export function AdminSidebar({ email, newLeads }: { email: string; newLeads: number }) {
+export function AdminSidebar({ email, name, role, newLeads }: { email: string; name: string | null; role: StaffRole; newLeads: number }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   useEffect(() => setOpen(false), [pathname]);
@@ -26,7 +30,7 @@ export function AdminSidebar({ email, newLeads }: { email: string; newLeads: num
 
   const nav = (
     <nav className="flex flex-1 flex-col gap-1 p-3">
-      {NAV.map(({ href, label, icon: Icon, exact }) => (
+      {NAV.filter((item) => !item.adminOnly || role === "admin").map(({ href, label, icon: Icon, exact }) => (
         <Link
           key={href}
           href={href}
@@ -50,7 +54,10 @@ export function AdminSidebar({ email, newLeads }: { email: string; newLeads: num
             <LogOut className="h-4 w-4" /> Sair
           </button>
         </form>
-        <p className="truncate px-3 pt-2 text-xs text-ink-500">{email}</p>
+        <div className="px-3 pt-2">
+          <p className="truncate text-xs font-semibold text-ink-300">{name || email}</p>
+          <p className="truncate text-xs text-ink-500">{ROLE_LABEL[role]}{name ? ` · ${email}` : ""}</p>
+        </div>
       </div>
     </nav>
   );

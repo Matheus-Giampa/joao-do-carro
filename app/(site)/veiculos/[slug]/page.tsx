@@ -13,6 +13,7 @@ import {
   Settings2,
   Tag,
 } from "lucide-react";
+import { FavoriteButton } from "@/components/account/FavoriteButton";
 import { Gallery } from "@/components/vehicle/Gallery";
 import { VehicleBadges } from "@/components/vehicle/VehicleBadges";
 import { VehicleCard } from "@/components/vehicle/VehicleCard";
@@ -219,9 +220,12 @@ export default async function VehiclePage({ params }: Props) {
                 </p>
               </div>
               <div className="mt-5 grid gap-2.5">
-                <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-primary py-4 text-base">
-                  <WhatsAppIcon className="h-5 w-5" /> {sold ? "Quero um similar" : "Tenho interesse"}
-                </a>
+                <div className="flex gap-2.5">
+                  <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-primary flex-1 py-4 text-base">
+                    <WhatsAppIcon className="h-5 w-5" /> {sold ? "Quero um similar" : "Tenho interesse"}
+                  </a>
+                  <FavoriteButton vehicleId={v.id} label={fullName} variant="outline" className="h-auto w-14 shrink-0" />
+                </div>
                 <a href="#proposta" className="btn btn-outline py-3.5">Solicitar proposta</a>
                 {!sold && <a href="#financiamento" className="btn btn-ghost py-3">Simular financiamento</a>}
               </div>

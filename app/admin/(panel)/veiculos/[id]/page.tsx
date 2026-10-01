@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { VehicleForm } from "@/components/admin/VehicleForm";
-import { requireAdmin } from "@/services/auth";
+import { requireStaff } from "@/services/auth";
 import { VEHICLE_SELECT, normalizeVehicle } from "@/services/vehicles";
 
 export const metadata = { title: "Editar veículo" };
@@ -11,7 +11,7 @@ export const metadata = { title: "Editar veículo" };
 export default async function EditVehiclePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!/^[0-9a-f-]{36}$/i.test(id)) notFound();
-  const { supabase } = await requireAdmin();
+  const { supabase } = await requireStaff();
   const { data } = await supabase.from("vehicles").select(VEHICLE_SELECT).eq("id", id).maybeSingle();
   if (!data) notFound();
   const vehicle = normalizeVehicle(data);

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Calendar, Fuel, Gauge, Settings2 } from "lucide-react";
 import { VehicleImage } from "./VehicleImage";
 import { VehicleBadges } from "./VehicleBadges";
+import { FavoriteButton } from "@/components/account/FavoriteButton";
 import { WhatsAppIcon } from "@/components/site/icons";
 import { cn, coverImage, formatKm, formatPrice, vehicleYears } from "@/lib/utils";
 import { vehicleInterestMessage, whatsappLink } from "@/lib/whatsapp";
@@ -32,7 +33,8 @@ export function VehicleCard({
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           className={cn("object-cover transition duration-700 group-hover:scale-[1.03]", sold && "grayscale")}
         />
-        <VehicleBadges vehicle={v} className="absolute left-3 top-3" />
+        <VehicleBadges vehicle={v} className="absolute left-3 right-16 top-3" />
+        <FavoriteButton vehicleId={v.id} label={`${v.brand} ${v.model}`} className="absolute right-3 top-3" />
         {sold && (
           <div className="absolute inset-0 grid place-items-center bg-ink-950/45">
             <span className="-rotate-6 rounded-full border-2 border-white px-5 py-1.5 font-display text-2xl font-bold text-white">

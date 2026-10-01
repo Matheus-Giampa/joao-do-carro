@@ -28,6 +28,8 @@ remove("components/admin");
 remove("services/auth.ts");
 remove("app/actions/admin.ts");
 remove("app/actions/auth.ts");
+remove("app/actions/team.ts");
+remove("lib/supabase/admin.ts");
 
 // 2. Formulários: em vez de salvar no banco, orientam o visitante a seguir pelo WhatsApp
 writeFileSync(

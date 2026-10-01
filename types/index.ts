@@ -4,6 +4,17 @@ export type LeadStatus = "novo" | "em_atendimento" | "negociacao" | "venda_reali
 
 export type LeadSource = "interesse" | "proposta" | "financiamento" | "contato";
 
+/** Cargo da equipe: admin faz tudo; funcionário cuida de anúncios e leads. */
+export type StaffRole = "admin" | "funcionario";
+
+export interface StaffMember {
+  user_id: string;
+  name: string | null;
+  email: string | null;
+  role: StaffRole;
+  created_at: string;
+}
+
 export interface VehicleImage {
   id: string;
   vehicle_id: string;

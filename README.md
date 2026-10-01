@@ -52,8 +52,18 @@ A loja administra tudo pelo painel `/admin`, **sem precisar mexer em código**.
 - SEO: títulos e descrições dinâmicos, Open Graph (com imagem gerada), `sitemap.xml`, `robots.txt`, Schema.org (`AutoDealer`, `Car`, `BreadcrumbList`).
 - Performance: `next/image` (AVIF/WebP, lazy loading), fotos comprimidas no upload, ISR (cache de 60 s + atualização imediata ao salvar no painel), skeleton loading.
 
+### Conta do cliente e favoritos
+- **Entrar / Criar conta** (`/entrar`): cadastro com nome, e-mail e senha, confirmação por e-mail e “Esqueci a senha”.
+- **Favoritos:** coração nos cards e na página do veículo; lista em **Meus favoritos** (`/favoritos`), disponível em qualquer aparelho.
+- Se a pessoa tocar no coração sem estar logada, vai para o login e o carro é salvo assim que ela entra.
+- Na versão de demonstração (sem Supabase), os favoritos ficam salvos só no navegador.
+
 ### Painel administrativo (`/admin`)
-- Login seguro (Supabase Auth) — só usuários cadastrados na tabela `admins` entram.
+- Login seguro (Supabase Auth) — só quem faz parte da **equipe** (tabela `admins`) entra.
+- **Dois cargos:**
+  - **Administrador:** tudo — anúncios, leads, configurações da loja e equipe.
+  - **Funcionário:** cadastra, edita e exclui anúncios e atende os leads, mas **não** acessa Configurações nem Equipe.
+- **Equipe** (`/admin/equipe`, só administrador): adicionar pessoas, trocar o cargo e remover o acesso. Ninguém consegue rebaixar ou remover o próprio acesso (sempre sobra um administrador).
 - **Dashboard:** total de veículos, disponíveis, vendidos, em destaque, leads e leads recentes.
 - **Veículos:** adicionar, editar, excluir, marcar vendido/reservado, destaque, oferta, ocultar/publicar, alterar preço direto na lista.
 - **Fotos:** upload múltiplo (arrastar e soltar), compressão automática para WebP, definir capa, reorganizar (arrastar ou setas), remover.
@@ -120,7 +130,8 @@ No Supabase, abra **SQL Editor → New query** e execute, **nesta ordem**, o con
 1. `supabase/migrations/20260101000001_schema.sql` — tabelas `vehicles`, `vehicle_images`, `leads`, `store_settings`, `admins`
 2. `supabase/migrations/20260101000002_security_rls.sql` — políticas de segurança (RLS)
 3. `supabase/migrations/20260101000003_storage.sql` — bucket de imagens e suas permissões
-4. *(opcional)* `supabase/seed.sql` — 10 veículos **fictícios** de demonstração (marcados com `is_demo = true`)
+4. `supabase/migrations/20260101000004_roles_favorites.sql` — cargos da equipe (admin/funcionário) e favoritos dos clientes
+5. *(opcional)* `supabase/seed.sql` — 10 veículos **fictícios** de demonstração (marcados com `is_demo = true`)
 
 Para apagar os veículos de demonstração depois:
 
@@ -155,7 +166,16 @@ Preencha com os dados de **Project Settings → API** (ou **Connect**) do Supaba
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | chave *anon / public* |
 | `NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET` | `media` |
 
-> ⚠️ **Nunca** use a chave `service_role` neste projeto e **nunca** envie o `.env.local` para o GitHub (ele já está no `.gitignore`). A chave *anon* é pública por natureza — a segurança é garantida pelas políticas RLS.
+| `SUPABASE_SERVICE_ROLE_KEY` | *(opcional)* chave *service_role*. Só serve para o administrador **criar contas da equipe direto no painel**. Sem ela, a pessoa cria a conta no site e o administrador libera o acesso pelo e-mail. |
+
+> ⚠️ A chave `service_role` dá acesso total ao banco: **nunca** coloque `NEXT_PUBLIC_` no nome dela e **nunca** envie o `.env.local` para o GitHub (ele já está no `.gitignore`). Ela só é usada no servidor, depois de confirmar que quem pediu é administrador. A chave *anon* é pública por natureza — a segurança é garantida pelas políticas RLS.
+
+### Login de clientes (e-mails de confirmação)
+No Supabase, em **Authentication → URL Configuration**:
+- **Site URL:** o endereço do site (ex.: `https://www.seudominio.com.br`);
+- **Redirect URLs:** adicione `https://www.seudominio.com.br/**` (e `http://localhost:3000/**` para testar localmente).
+
+Sem isso, os links de confirmação de cadastro e de “Esqueci a senha” não voltam para o site.
 
 ## 6. Criar o primeiro administrador
 
@@ -164,11 +184,11 @@ Preencha com os dados de **Project Settings → API** (ou **Connect**) do Supaba
 3. No **SQL Editor**, execute (troque o e-mail):
 
 ```sql
-insert into public.admins (user_id, name)
-select id, 'João' from auth.users where email = 'seu-email@exemplo.com';
+insert into public.admins (user_id, name, email, role)
+select id, 'João', email, 'admin' from auth.users where email = 'seu-email@exemplo.com';
 ```
 
-Pronto: acesse `/admin` e entre com esse e-mail e senha. Repita para outros administradores. Para remover um administrador:
+Pronto: acesse `/admin` e entre com esse e-mail e senha. **Os próximos administradores e funcionários você cadastra pelo próprio painel, em Equipe** — não precisa mais de SQL. Se um dia precisar remover alguém pelo SQL:
 
 ```sql
 delete from public.admins where user_id = (select id from auth.users where email = 'email@exemplo.com');

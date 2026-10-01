@@ -5,23 +5,12 @@ import { DEMO_VEHICLES } from "@/lib/demo-data";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createPublicClient } from "@/lib/supabase/public";
 import { buildFilterOptions, filterVehicles, paginate, searchWords as searchWordsOf, sortVehicles } from "@/lib/inventory";
+import { VEHICLE_SELECT, normalizeVehicle } from "@/lib/vehicle-row";
 import type { FilterOptions, PaginatedVehicles, Vehicle, VehicleFilters } from "@/types";
 
 export { parseFilters } from "@/lib/inventory";
 
-export const VEHICLE_SELECT = "*, images:vehicle_images(id, vehicle_id, url, storage_path, position)";
-
-/** Normaliza o registro vindo do banco (números, ordem das fotos). */
-export function normalizeVehicle(row: Record<string, unknown>): Vehicle {
-  const v = row as unknown as Vehicle;
-  return {
-    ...v,
-    price: Number(v.price),
-    previous_price: v.previous_price != null ? Number(v.previous_price) : null,
-    options: v.options ?? [],
-    images: [...(v.images ?? [])].sort((a, b) => a.position - b.position),
-  };
-}
+export { VEHICLE_SELECT, normalizeVehicle };
 
 /** Busca paginada do estoque com filtros e ordenação. */
 export async function searchVehicles(filters: VehicleFilters, pageSize = PAGE_SIZE): Promise<PaginatedVehicles> {

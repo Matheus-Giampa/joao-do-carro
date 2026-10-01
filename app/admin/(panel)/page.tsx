@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Car, CheckCircle2, PlusCircle, Star, Tag, Users } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { LeadStatusBadge } from "@/components/admin/LeadStatusBadge";
-import { requireAdmin } from "@/services/auth";
+import { requireStaff } from "@/services/auth";
 import { LEAD_SOURCE_LABEL } from "@/lib/constants";
 import { formatDate } from "@/lib/utils";
 import type { Lead } from "@/types";
@@ -10,7 +10,7 @@ import type { Lead } from "@/types";
 export const metadata = { title: "Dashboard" };
 
 export default async function DashboardPage() {
-  const { supabase } = await requireAdmin();
+  const { supabase } = await requireStaff();
   const head = { count: "exact" as const, head: true };
 
   const [total, available, sold, featured, leads, newLeads, recent] = await Promise.all([

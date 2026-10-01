@@ -21,7 +21,7 @@ export async function signIn(_prev: ActionResult | null, fd: FormData): Promise<
   const { data: admin } = await supabase.from("admins").select("user_id").eq("user_id", data.user.id).maybeSingle();
   if (!admin) {
     await supabase.auth.signOut();
-    return { ok: false, message: "Este usuário não tem permissão de administrador." };
+    return { ok: false, message: "Esta conta não faz parte da equipe. Peça a um administrador para liberar o acesso." };
   }
 
   // Só permite redirecionar para dentro do painel (evita open redirect)

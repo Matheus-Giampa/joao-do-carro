@@ -2,6 +2,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 import { DemoBanner } from "@/components/site/DemoBanner";
+import { AccountProvider } from "@/components/account/AccountProvider";
 import { getStoreSettings } from "@/services/settings";
 import { generalMessage, whatsappLink } from "@/lib/whatsapp";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
@@ -13,7 +14,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const waHref = whatsappLink(settings.whatsapp, generalMessage(settings.company_name));
 
   return (
-    <>
+    <AccountProvider>
       {!isSupabaseConfigured && <DemoBanner />}
       <Header companyName={settings.company_name} logoUrl={settings.logo_url} phone={settings.phone} whatsappHref={waHref} />
       <main id="conteudo" className="min-h-[60vh]">
@@ -21,6 +22,6 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       </main>
       <Footer settings={settings} />
       <WhatsAppFloat href={waHref} />
-    </>
+    </AccountProvider>
   );
 }

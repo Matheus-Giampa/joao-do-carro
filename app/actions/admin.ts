@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { assertAdmin } from "@/services/auth";
+import { assertAdmin, assertStaff } from "@/services/auth";
 import { STORAGE_BUCKET } from "@/lib/constants";
 import { slugify } from "@/lib/utils";
 import type { ActionResult, LeadStatus, VehicleStatus } from "@/types";
@@ -49,7 +49,7 @@ type ImageInput = { url: string; storage_path: string | null };
 export async function saveVehicle(_prev: ActionResult | null, fd: FormData): Promise<ActionResult> {
   let supabase;
   try {
-    ({ supabase } = await assertAdmin());
+    ({ supabase } = await assertStaff());
   } catch (e) {
     return { ok: false, message: errorMessage(e) };
   }
@@ -151,7 +151,7 @@ export async function updateVehicleQuick(
   patch: Partial<{ status: VehicleStatus; featured: boolean; published: boolean; is_offer: boolean; price: number }>,
 ): Promise<ActionResult> {
   try {
-    const { supabase } = await assertAdmin();
+    const { supabase } = await assertStaff();
     const clean: Record<string, unknown> = {};
     if (patch.status && VEHICLE_STATUS.includes(patch.status)) clean.status = patch.status;
     if (typeof patch.featured === "boolean") clean.featured = patch.featured;
@@ -170,7 +170,7 @@ export async function updateVehicleQuick(
 
 export async function deleteVehicle(id: string): Promise<ActionResult> {
   try {
-    const { supabase } = await assertAdmin();
+    const { supabase } = await assertStaff();
     const { data: imgs } = await supabase.from("vehicle_images").select("storage_path").eq("vehicle_id", id);
     const paths = (imgs ?? []).map((i) => i.storage_path).filter((p): p is string => !!p);
     if (paths.length) await supabase.storage.from(STORAGE_BUCKET).remove(paths);
@@ -189,7 +189,7 @@ export async function deleteVehicle(id: string): Promise<ActionResult> {
 
 export async function updateLead(id: string, patch: { status?: LeadStatus; notes?: string }): Promise<ActionResult> {
   try {
-    const { supabase } = await assertAdmin();
+    const { supabase } = await assertStaff();
     const clean: Record<string, unknown> = {};
     if (patch.status && LEAD_STATUS.includes(patch.status)) clean.status = patch.status;
     if (typeof patch.notes === "string") clean.notes = patch.notes.slice(0, 2000) || null;
@@ -204,7 +204,7 @@ export async function updateLead(id: string, patch: { status?: LeadStatus; notes
 
 export async function deleteLead(id: string): Promise<ActionResult> {
   try {
-    const { supabase } = await assertAdmin();
+    const { supabase } = await assertStaff();
     const { error } = await supabase.from("leads").delete().eq("id", id);
     if (error) return { ok: false, message: error.message };
     revalidatePath("/admin", "layout");

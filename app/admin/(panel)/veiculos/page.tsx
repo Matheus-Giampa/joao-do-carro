@@ -3,7 +3,7 @@ import { CheckCircle2, Pencil, PlusCircle, Search } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { VehicleRowActions, QuickPrice } from "@/components/admin/VehicleRowActions";
 import { VehicleImage } from "@/components/vehicle/VehicleImage";
-import { requireAdmin } from "@/services/auth";
+import { requireStaff } from "@/services/auth";
 import { VEHICLE_SELECT, normalizeVehicle } from "@/services/vehicles";
 import { VEHICLE_STATUS_LABEL } from "@/lib/constants";
 import { cn, coverImage, formatKm, vehicleYears } from "@/lib/utils";
@@ -22,7 +22,7 @@ export default async function AdminVehiclesPage({
   searchParams: Promise<{ q?: string; status?: string; destaque?: string; salvo?: string }>;
 }) {
   const { q, status, destaque, salvo } = await searchParams;
-  const { supabase } = await requireAdmin();
+  const { supabase } = await requireStaff();
 
   let query = supabase.from("vehicles").select(VEHICLE_SELECT).order("created_at", { ascending: false });
   if (status && ["disponivel", "reservado", "vendido"].includes(status)) query = query.eq("status", status);

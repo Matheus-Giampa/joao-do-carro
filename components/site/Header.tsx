@@ -5,6 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Menu, Phone, X } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
+import { AccountMenu, FavoritesLink, MobileAccountLinks } from "@/components/account/AccountMenu";
 import { WhatsAppIcon } from "./icons";
 import { cn, formatPhone } from "@/lib/utils";
 
@@ -113,7 +114,7 @@ export function Header({
           <Nav variant="desktop" />
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-2.5 lg:flex">
           {phone && (
             <a href={`tel:${phone.replace(/\D/g, "")}`} className="flex items-center gap-2 text-sm font-semibold text-ink-200 hover:text-white">
               <Phone className="h-4 w-4" /> {formatPhone(phone)}
@@ -122,9 +123,12 @@ export function Header({
           <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp btn-sm py-2.5">
             <WhatsAppIcon className="h-4 w-4" /> WhatsApp
           </a>
+          <FavoritesLink />
+          <AccountMenu />
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
+          <FavoritesLink />
           <a
             href={whatsappHref}
             target="_blank"
@@ -157,7 +161,10 @@ export function Header({
             onClick={(e) => (e.target as HTMLElement).closest("a") && setOpen(false)}
           >
             <Nav variant="mobile" />
-            <div className="mt-6 grid gap-3 border-t border-white/10 pt-6">
+            <div className="mt-4 border-t border-white/10 pt-4">
+              <MobileAccountLinks />
+            </div>
+            <div className="mt-4 grid gap-3 border-t border-white/10 pt-6">
               <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp w-full py-4">
                 <WhatsAppIcon /> Falar no WhatsApp
               </a>

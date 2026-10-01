@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { LeadCard } from "@/components/admin/LeadCard";
-import { requireAdmin } from "@/services/auth";
+import { requireStaff } from "@/services/auth";
 import { LEAD_STATUS_LABEL } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import type { Lead, LeadStatus } from "@/types";
@@ -11,7 +11,7 @@ export const metadata = { title: "Leads" };
 
 export default async function LeadsPage({ searchParams }: { searchParams: Promise<{ status?: string; q?: string }> }) {
   const { status, q } = await searchParams;
-  const { supabase } = await requireAdmin();
+  const { supabase } = await requireStaff();
 
   let query = supabase.from("leads").select("*").order("created_at", { ascending: false }).limit(500);
   if (status && status in LEAD_STATUS_LABEL) query = query.eq("status", status);
