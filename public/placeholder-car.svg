@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#ececee"/>
+  <g transform="translate(-60 30)">
+    <path d="M632 214 C 740 140 965 104 1114 180 C 1080 178 1060 172 1040 168 C 940 140 780 156 662 214 Z" fill="#e1101d" opacity=".35" transform="scale(.6)"/>
+    <path d="M342 272 C 402 236 522 214 650 212 C 822 210 1010 232 1180 200 Q 1236 191 1256 218" fill="none" stroke="#b1b3ba" stroke-width="11" stroke-linecap="round" transform="scale(.6)"/>
+  </g>
+  <text x="400" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#85888f">Foto em breve</text>
+</svg>

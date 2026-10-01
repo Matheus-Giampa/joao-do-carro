@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0a0a0c"/>
+  <path d="M20 31 C 27 21 41 17 52 25 C 49 25 47 24 45 24 C 38 21 28 23 23 31 Z" fill="#e1101d"/>
+  <path d="M8 41 C 14 35 22 32 30 32 C 40 32 48 34 56 30" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/>
+  <text x="32" y="56" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="13" fill="#fff" letter-spacing="1">JC</text>
+</svg>
