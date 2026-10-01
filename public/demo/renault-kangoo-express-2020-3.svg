@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -60 800 600" width="1600" height="1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#141518"/><stop offset="1" stop-color="#3a3c42"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect y="-60" width="800" height="600" fill="url(#bg)"/>
+  <circle cx="640" cy="110" r="140" fill="#ff5f67" opacity=".12"/>
+  <rect y="410" width="800" height="130" fill="#000" opacity=".12"/>
+  <g transform=" translate(-160 -120) scale(1.4)">
+    <ellipse cx="405" cy="420" rx="330" ry="22" fill="#000" opacity=".28"/>
+    <path d="M150 282 L210 175 Q220 165 240 165 L690 165 Q700 166 700 180 L700 282 Z" fill="#c7c8ca"/><path d="M150 282 L210 175 Q220 165 240 165 L690 165 Q700 166 700 180 L700 282 Z" fill="#9fb4d1" opacity=".55" transform="translate(12 10) scale(.97)"/>
+    
+    <path d="M110 368 L112 300 Q115 285 140 282 L700 280 L702 368 Z" fill="#f4f5f7"/>
+    <path d="M110 368 L112 300 Q115 285 140 282 L700 280 L702 368 Z" fill="url(#shine)" opacity=".6"/>
+    <path d="M150 330 L690 326" stroke="#ffffff" stroke-width="3" opacity=".7"/>
+    <rect x="672" y="300" width="26" height="12" rx="5" fill="#fff6c9"/>
+    <rect x="110" y="304" width="20" height="12" rx="5" fill="#e0453a"/>
+    
+    <g transform="translate(225 365)">
+      <circle r="52" fill="#0b0f18"/>
+      <circle r="46" fill="#1c222e"/>
+      <circle r="28.52" fill="#a9b3c2"/>
+      <circle r="23" fill="#6b7686"/>
+      <circle r="6.8999999999999995" fill="#d6dce5"/>
+    </g>
+    <g transform="translate(585 365)">
+      <circle r="52" fill="#0b0f18"/>
+      <circle r="46" fill="#1c222e"/>
+      <circle r="28.52" fill="#a9b3c2"/>
+      <circle r="23" fill="#6b7686"/>
+      <circle r="6.8999999999999995" fill="#d6dce5"/>
+    </g></g>
+  <rect x="532" y="-42" width="250" height="28" rx="14" fill="#000" opacity=".35"/>
+  <text x="548" y="-23" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">IMAGEM ILUSTRATIVA · DEMO</text>
+  <text x="24" y="514" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff" opacity=".85">Renault Kangoo</text>
+</svg>
