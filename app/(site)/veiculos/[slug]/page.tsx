@@ -24,11 +24,19 @@ import { absoluteUrl, cn, formatKm, formatPrice, vehicleFullName, vehicleYears }
 import { vehicleInterestMessage, whatsappLink } from "@/lib/whatsapp";
 import { getSimilarVehicles, getVehicleBySlug } from "@/services/vehicles";
 import { getStoreSettings } from "@/services/settings";
+import { DEMO_VEHICLES } from "@/lib/demo-data";
+import { IS_STATIC_EXPORT } from "@/lib/paths";
 import type { Vehicle } from "@/types";
 
 export const revalidate = 60;
 
 type Props = { params: Promise<{ slug: string }> };
+
+/** Na versão estática (GitHub Pages) as páginas dos veículos de demonstração são geradas no build. */
+export async function generateStaticParams() {
+  if (!IS_STATIC_EXPORT) return [];
+  return DEMO_VEHICLES.map((v) => ({ slug: v.slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;

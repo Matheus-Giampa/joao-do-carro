@@ -6,6 +6,9 @@ Site profissional + painel administrativo para a loja de veículos **João do Ca
 O cliente pesquisa o estoque, filtra, vê fotos e detalhes, simula financiamento e chama no WhatsApp.
 A loja administra tudo pelo painel `/admin`, **sem precisar mexer em código**.
 
+🔗 **Demonstração online:** https://matheus-giampa.github.io/joao-do-carro/
+*(versão estática com veículos fictícios, publicada automaticamente pelo GitHub Pages a cada push — veja `.github/workflows/pages.yml`. O painel `/admin` e o salvamento de leads funcionam apenas na versão completa, publicada na Vercel com Supabase.)*
+
 **Tecnologias:** Next.js 15 (App Router) · TypeScript · Tailwind CSS · Supabase (PostgreSQL, Auth, Storage, RLS) · Vercel
 
 ---

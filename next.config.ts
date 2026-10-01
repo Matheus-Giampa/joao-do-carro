@@ -10,9 +10,35 @@ const supabaseHost = (() => {
   }
 })();
 
+/**
+ * NEXT_PUBLIC_STATIC_EXPORT=1 gera a versão de demonstração estática
+ * (GitHub Pages) — veja scripts/prepare-pages.mjs e .github/workflows/pages.yml.
+ */
+const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === "1";
+
+const securityHeaders = async () => [
+  {
+    source: "/(.*)",
+    headers: [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      { key: "X-Frame-Options", value: "SAMEORIGIN" },
+      { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+    ],
+  },
+];
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  ...(isStaticExport
+    ? {
+        output: "export",
+        basePath: process.env.NEXT_PUBLIC_BASE_PATH || undefined,
+        trailingSlash: true,
+      }
+    : { headers: securityHeaders }),
   images: {
+    unoptimized: isStaticExport,
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" },
@@ -25,19 +51,6 @@ const nextConfig: NextConfig = {
     serverActions: {
       bodySizeLimit: "2mb",
     },
-  },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-        ],
-      },
-    ];
   },
 };
 
