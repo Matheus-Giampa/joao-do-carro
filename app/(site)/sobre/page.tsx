@@ -31,11 +31,11 @@ export default async function SobrePage() {
     <>
       <PageHero eyebrow="Quem somos" title={`Conheça a ${s.company_name}`} subtitle={s.slogan} />
 
-      <div className="container -mt-10 space-y-6">
+      <div className="container pt-10 space-y-6">
         {s.about_history && (
           <section className="card p-6 sm:p-10">
             <div className="flex items-center gap-3">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-600 text-white"><BookOpen className="h-5 w-5" /></span>
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-600 text-white"><BookOpen className="h-5 w-5" /></span>
               <h2 className="font-display text-2xl font-bold text-ink-950">Nossa história</h2>
             </div>
             <p className="prose-text mt-5 max-w-3xl text-lg">{s.about_history}</p>

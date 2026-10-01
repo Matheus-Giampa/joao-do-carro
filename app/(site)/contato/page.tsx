@@ -38,7 +38,7 @@ export default async function ContatoPage() {
   return (
     <>
       <PageHero eyebrow="Fale conosco" title="Contato" subtitle="Tire dúvidas, agende uma visita ou peça uma avaliação. Respondemos o mais rápido possível." />
-      <div className="container -mt-10 grid gap-6 lg:grid-cols-[1fr_1.2fr]">
+      <div className="container pt-10 grid gap-6 lg:grid-cols-[1fr_1.2fr]">
         <div className="space-y-3">
           <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp w-full py-5 text-base">
             <WhatsAppIcon className="h-5 w-5" /> Chamar no WhatsApp
@@ -46,11 +46,11 @@ export default async function ContatoPage() {
           {channels.map(({ icon: Icon, label, value, href, color }) => {
             const inner = (
               <>
-                <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl text-white ${color}`}>
+                <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-full text-white ${color}`}>
                   <Icon className="h-5 w-5" />
                 </span>
                 <span className="min-w-0">
-                  <span className="block text-xs font-bold uppercase tracking-wider text-ink-400">{label}</span>
+                  <span className="block text-[13px] font-medium text-ink-500">{label}</span>
                   <span className="block whitespace-pre-line break-words font-semibold text-ink-950">{value}</span>
                 </span>
               </>

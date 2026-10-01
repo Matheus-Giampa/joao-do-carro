@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Calculator, Info, X } from "lucide-react";
 import { CurrencyInput } from "@/components/ui/CurrencyInput";
 import { LeadForm } from "@/components/forms/LeadForm";
@@ -27,6 +27,12 @@ export function FinanceSimulator({
   const [down, setDown] = useState<number | null>(Math.round((initialValue * 0.3) / 100) * 100);
   const [months, setMonths] = useState<number>(48);
   const [showForm, setShowForm] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
+
+  // Ao abrir, leva a pessoa até o formulário (antes ele aparecia fora da tela e parecia que o botão não fazia nada)
+  useEffect(() => {
+    if (showForm) formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [showForm]);
 
   const v = value ?? 0;
   const d = Math.min(down ?? 0, v);
@@ -36,12 +42,12 @@ export function FinanceSimulator({
   const downPct = v > 0 ? Math.round((d / v) * 100) : 0;
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-card">
+    <div className="overflow-hidden rounded-3xl border border-ink-200/60 bg-white shadow-card">
       <div className={cn("grid", !compact && "lg:grid-cols-[1fr_1.1fr]")}>
         {/* Entradas */}
         <div className="space-y-5 p-5 sm:p-7">
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-600 text-white">
+            <span className="grid h-10 w-10 place-items-center rounded-full bg-brand-600 text-white">
               <Calculator className="h-5 w-5" />
             </span>
             <div>
@@ -84,7 +90,7 @@ export function FinanceSimulator({
                   aria-checked={months === n}
                   onClick={() => setMonths(n)}
                   className={cn(
-                    "rounded-xl border py-2.5 text-sm font-bold transition",
+                    "rounded-full border py-2.5 text-sm font-semibold transition",
                     months === n ? "border-ink-950 bg-ink-950 text-white" : "border-ink-200 bg-white text-ink-700 hover:border-ink-400",
                   )}
                 >
@@ -97,7 +103,7 @@ export function FinanceSimulator({
 
         {/* Resultado visual */}
         <div className="speed-lines relative bg-ink-950 p-5 text-white sm:p-7">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-400">Parcela estimada</p>
+          <p className="text-sm font-medium text-ink-400">Parcela estimada</p>
           <p className="mt-1 font-display text-4xl font-extrabold sm:text-5xl" aria-live="polite">
             {months}x <span className="text-brand-500">{formatPrice(result.installment, true)}</span>
           </p>
@@ -122,7 +128,7 @@ export function FinanceSimulator({
 
           {/* Comparativo de prazos */}
           <div className="mt-6 space-y-2">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-ink-400">Compare os prazos</p>
+            <p className="text-sm font-medium text-ink-400">Compare os prazos</p>
             {all.map((a) => (
               <button
                 key={a.n}
@@ -156,7 +162,7 @@ export function FinanceSimulator({
       </div>
 
       {showForm && (
-        <div className="border-t border-ink-100 bg-ink-50 p-5 sm:p-7">
+        <div ref={formRef} className="scroll-mt-24 border-t border-ink-100 bg-ink-50 p-5 sm:p-7">
           <div className="mb-5 flex items-start justify-between gap-4">
             <div>
               <h4 className="font-display text-lg font-bold text-ink-950">Solicitar financiamento</h4>
@@ -167,7 +173,6 @@ export function FinanceSimulator({
             </button>
           </div>
           <LeadForm
-            key={`${d}-${months}`}
             idPrefix="fin"
             source="financiamento"
             vehicleId={vehicleId}

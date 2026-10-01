@@ -15,24 +15,24 @@ export function LocationSection({ settings: s }: { settings: StoreSettings }) {
           <h2 id="onde-estamos" className="section-title mt-2">Onde estamos</h2>
           <ul className="mt-8 space-y-6">
             <li className="flex gap-4">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink-950 text-white"><MapPin className="h-5 w-5" /></span>
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink-100 text-ink-900"><MapPin className="h-5 w-5" /></span>
               <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-ink-400">Endereço</p>
+                <p className="text-[13px] font-medium text-ink-500">Endereço</p>
                 <p className="mt-0.5 font-medium text-ink-900">{s.address ?? "Endereço ainda não configurado."}</p>
               </div>
             </li>
             <li className="flex gap-4">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink-950 text-white"><Clock className="h-5 w-5" /></span>
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink-100 text-ink-900"><Clock className="h-5 w-5" /></span>
               <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-ink-400">Horário de funcionamento</p>
+                <p className="text-[13px] font-medium text-ink-500">Horário de funcionamento</p>
                 <p className="mt-0.5 whitespace-pre-line font-medium text-ink-900">{s.business_hours ?? "Horário ainda não configurado."}</p>
               </div>
             </li>
             {(s.phone || s.whatsapp) && (
               <li className="flex gap-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink-950 text-white"><Phone className="h-5 w-5" /></span>
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink-100 text-ink-900"><Phone className="h-5 w-5" /></span>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-ink-400">Contato</p>
+                  <p className="text-[13px] font-medium text-ink-500">Contato</p>
                   <p className="mt-0.5 font-medium text-ink-900">{formatPhone(s.phone ?? s.whatsapp)}</p>
                 </div>
               </li>

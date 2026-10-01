@@ -4,10 +4,11 @@ import { QuickSearch } from "@/components/site/QuickSearch";
 import { LocationSection } from "@/components/site/LocationSection";
 import { CarSwoosh } from "@/components/brand/Logo";
 import { VehicleCard } from "@/components/vehicle/VehicleCard";
+import { VehicleImage } from "@/components/vehicle/VehicleImage";
 import { BodyTypeIcon } from "@/components/vehicle/BodyTypeIcon";
 import { WhatsAppIcon } from "@/components/site/icons";
 import { BODY_TYPES } from "@/lib/constants";
-import { absoluteUrl } from "@/lib/utils";
+import { absoluteUrl, coverImage, formatKm, formatPrice, vehicleYears } from "@/lib/utils";
 import { generalMessage, whatsappLink } from "@/lib/whatsapp";
 import { getFeaturedVehicles, getFilterOptions, getOfferVehicles } from "@/services/vehicles";
 import { getStoreSettings } from "@/services/settings";
@@ -22,6 +23,7 @@ export default async function HomePage() {
     getOfferVehicles(4),
   ]);
   const wa = whatsappLink(settings.whatsapp, generalMessage(settings.company_name));
+  const showcase = featured[0];
 
   const shortcuts = [
     { href: "/estoque", label: "Comprar carro", icon: Car },
@@ -48,37 +50,71 @@ export default async function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* HERO */}
-      <section className="speed-lines relative overflow-hidden overflow-x-clip bg-ink-950 pb-10 pt-12 text-white sm:pt-16 lg:pb-16 lg:pt-20">
-        <div className="pointer-events-none absolute -right-40 top-6 w-[900px] max-w-none opacity-[0.13] sm:-right-24 lg:right-[-60px] lg:top-0 lg:opacity-25">
-          <CarSwoosh />
-        </div>
-        <div className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-brand-600/20 blur-3xl" />
-        <div className="container relative">
-          <div className="max-w-2xl animate-fade-up">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-ink-200">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-500" /> {settings.slogan}
-            </p>
-            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl">
+      {/* HERO — layout claro e editorial, com um carro em vitrine ao lado */}
+      <section className="relative pb-12 pt-10 sm:pt-14 lg:pb-16">
+        <div className="container grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+          <div className="animate-fade-up">
+            <p className="eyebrow">{settings.slogan}</p>
+            <h1 className="mt-4 font-display text-[2.6rem] font-bold leading-[1.02] tracking-tight text-ink-950 sm:text-6xl lg:text-7xl">
               {settings.hero_title.split(" ").slice(0, -2).join(" ")}{" "}
-              <span className="text-brand-500">{settings.hero_title.split(" ").slice(-2).join(" ")}</span>
+              <span className="text-brand-600">{settings.hero_title.split(" ").slice(-2).join(" ")}</span>
             </h1>
-            <p className="mt-4 max-w-xl text-lg text-ink-300">{settings.hero_subtitle}</p>
+            <p className="mt-5 max-w-lg text-lg text-ink-600">{settings.hero_subtitle}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/estoque" className="btn btn-dark">
+                Ver estoque <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+                <WhatsAppIcon className="h-4 w-4 text-whatsapp" /> Falar com a loja
+              </a>
+            </div>
           </div>
 
-          <div className="mt-8 lg:mt-12">
-            <QuickSearch options={options} />
-          </div>
+          {showcase ? (
+            <Link
+              href={`/veiculos/${showcase.slug}`}
+              className="speed-lines group relative block overflow-hidden rounded-[2rem] bg-ink-950 p-3 text-white shadow-card-hover"
+            >
+              <div className="relative aspect-[16/11] overflow-hidden rounded-[1.5rem]">
+                <VehicleImage
+                  src={coverImage(showcase)}
+                  alt={`${showcase.brand} ${showcase.model}`}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition duration-700 group-hover:scale-[1.03]"
+                />
+              </div>
+              <div className="flex items-end justify-between gap-4 px-3 pb-2 pt-4">
+                <div className="min-w-0">
+                  <p className="text-sm text-ink-400">Em destaque · {showcase.brand}</p>
+                  <p className="truncate font-display text-2xl font-bold">{showcase.model} <span className="font-semibold text-ink-400">{showcase.version}</span></p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <p className="font-display text-2xl font-bold">{formatPrice(showcase.price)}</p>
+                  <p className="text-sm text-ink-400">{vehicleYears(showcase)} · {formatKm(showcase.mileage)}</p>
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <div className="speed-lines relative hidden aspect-[16/11] overflow-hidden rounded-[2rem] bg-ink-950 lg:block">
+              <div className="absolute inset-x-10 top-1/2 -translate-y-1/2 opacity-60">
+                <CarSwoosh />
+              </div>
+            </div>
+          )}
+        </div>
 
-          <nav aria-label="Atalhos" className="no-scrollbar -mx-4 mt-6 flex gap-3 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:grid-cols-5 sm:px-0">
+        <div className="container mt-10 lg:mt-14">
+          <QuickSearch options={options} />
+
+          <nav aria-label="Atalhos" className="no-scrollbar -mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
             {shortcuts.map(({ href, label, icon: Icon, external }) => {
               const cls =
-                "group flex min-w-[140px] items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3.5 text-sm font-semibold text-white transition hover:border-brand-500 hover:bg-white/10";
+                "flex shrink-0 items-center gap-2 rounded-full border border-ink-200 bg-white/60 px-4 py-2 text-sm font-medium text-ink-800 transition hover:border-ink-900 hover:bg-white";
               const inner = (
                 <>
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand-600 transition group-hover:scale-110">
-                    {external ? <WhatsAppIcon className="h-4 w-4" /> : <Icon className="h-4 w-4" />}
-                  </span>
+                  {external ? <WhatsAppIcon className="h-4 w-4 text-whatsapp" /> : <Icon className="h-4 w-4 text-brand-600" />}
                   {label}
                 </>
               );
@@ -124,10 +160,10 @@ export default async function HomePage() {
               <Link
                 key={b}
                 href={`/estoque?carroceria=${encodeURIComponent(b)}`}
-                className="group flex flex-col items-center gap-3 rounded-2xl border border-ink-100 bg-ink-50 px-3 py-5 text-ink-800 transition hover:-translate-y-0.5 hover:border-ink-950 hover:bg-ink-950 hover:text-white"
+                className="group flex flex-col items-center gap-3 rounded-3xl border border-ink-200/70 bg-ink-50 px-3 py-6 text-ink-800 transition hover:-translate-y-0.5 hover:border-ink-300 hover:bg-white hover:shadow-card"
               >
-                <BodyTypeIcon type={b} className="h-8 w-20 text-ink-900 transition group-hover:text-brand-500" />
-                <span className="text-sm font-bold">{b}</span>
+                <BodyTypeIcon type={b} className="h-8 w-20 text-ink-800 transition group-hover:text-brand-600" />
+                <span className="text-sm font-semibold">{b}</span>
               </Link>
             ))}
           </div>
@@ -195,7 +231,7 @@ export default async function HomePage() {
           ].map(({ icon: Icon, title, text }, i) => (
             <div key={title} className="card relative p-6">
               <span className="absolute right-5 top-4 font-display text-5xl font-extrabold text-ink-100">{i + 1}</span>
-              <span className="relative grid h-11 w-11 place-items-center rounded-xl bg-ink-950 text-white">
+              <span className="relative grid h-11 w-11 place-items-center rounded-full bg-brand-50 text-brand-700">
                 <Icon className="h-5 w-5" />
               </span>
               <h3 className="relative mt-4 font-display text-lg font-bold text-ink-950">{title}</h3>

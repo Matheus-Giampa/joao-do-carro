@@ -1,6 +1,6 @@
 "use client";
 
-import { startTransition, useActionState, useState } from "react";
+import { startTransition, useActionState, useEffect, useState } from "react";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { submitLead } from "@/app/actions/leads";
 import { CurrencyInput } from "@/components/ui/CurrencyInput";
@@ -88,6 +88,10 @@ export function LeadForm({
 }) {
   const [state, action, pending] = useActionState<ActionResult | null, FormData>(submitLead, null);
   const [down, setDown] = useState<number | null>(defaultDownPayment ?? null);
+  const [installments, setInstallments] = useState(defaultInstallments ?? 48);
+  // Acompanha o simulador sem recriar o formulário (antes, mexer na simulação apagava o que já foi digitado)
+  useEffect(() => setDown(defaultDownPayment ?? null), [defaultDownPayment]);
+  useEffect(() => setInstallments(defaultInstallments ?? 48), [defaultInstallments]);
   const e = state?.errors ?? {};
   const id = (k: string) => `${idPrefix}-${k}`;
   const isFinance = source === "financiamento";
@@ -164,7 +168,7 @@ export function LeadForm({
             <input type="hidden" name="down_payment" value={down ?? ""} />
           </Field>
           <Field label="Quantidade de parcelas" htmlFor={id("inst")}>
-            <select id={id("inst")} name="installments" className="input" defaultValue={defaultInstallments ?? 48}>
+            <select id={id("inst")} name="installments" className="input" value={installments} onChange={(ev) => setInstallments(Number(ev.target.value))}>
               {INSTALLMENT_OPTIONS.map((n) => (
                 <option key={n} value={n}>
                   {n}x

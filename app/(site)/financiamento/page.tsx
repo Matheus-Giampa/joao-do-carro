@@ -22,7 +22,7 @@ export default async function FinanciamentoPage() {
   return (
     <>
       <PageHero eyebrow="Financiamento" title="Simule seu financiamento" subtitle="Defina o valor do veículo, a entrada e o número de parcelas. Depois é só solicitar a análise." />
-      <div className="container -mt-10 space-y-12 pb-8">
+      <div className="container pt-10 space-y-12 pb-8">
         <FinanceSimulator monthlyRate={s.finance_monthly_rate} whatsappHref={wa} initialValue={90000} />
         <div className="grid gap-4 sm:grid-cols-3">
           {[

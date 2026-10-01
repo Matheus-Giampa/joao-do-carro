@@ -26,7 +26,7 @@ export function QuickSearch({ options }: { options: FilterOptions }) {
   return (
     <form
       onSubmit={onSubmit}
-      className="grid gap-3 rounded-2xl bg-white p-4 shadow-2xl shadow-black/30 sm:grid-cols-2 sm:p-5 lg:grid-cols-[1fr_1fr_.8fr_1fr_1fr_auto] lg:items-end"
+      className="grid gap-3 rounded-3xl border border-ink-200/60 bg-white p-4 shadow-card sm:grid-cols-2 sm:p-5 lg:grid-cols-[1.25fr_1.25fr_1fr_1fr_1fr_auto] lg:items-end"
       role="search"
       aria-label="Busca rápida de veículos"
     >
@@ -45,7 +45,7 @@ export function QuickSearch({ options }: { options: FilterOptions }) {
         </select>
       </div>
       <div>
-        <label htmlFor="qs-ano" className="label">Ano (a partir de)</label>
+        <label htmlFor="qs-ano" className="label">Ano mínimo</label>
         <select id="qs-ano" name="anoMin" className="input" defaultValue="">
           <option value="">Qualquer</option>
           {options.years.map((y) => <option key={y} value={y}>{y}</option>)}
@@ -57,10 +57,10 @@ export function QuickSearch({ options }: { options: FilterOptions }) {
       </div>
       <div>
         <label htmlFor="qs-max" className="label">Preço máximo</label>
-        <input id="qs-max" name="precoMax" type="number" inputMode="numeric" min={0} step={1000} placeholder="R$ sem limite" className="input" />
+        <input id="qs-max" name="precoMax" type="number" inputMode="numeric" min={0} step={1000} placeholder="Sem limite" className="input" />
       </div>
-      <button type="submit" className="btn btn-primary h-[46px] w-full sm:col-span-2 lg:col-span-1 lg:w-auto">
-        <Search className="h-4 w-4" /> Buscar veículos
+      <button type="submit" className="btn btn-primary h-[46px] w-full whitespace-nowrap sm:col-span-2 lg:col-span-1 lg:w-auto">
+        <Search className="h-4 w-4" /> Buscar
       </button>
     </form>
   );

@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Chakra_Petch, Inter, Saira } from "next/font/google";
+import { Bricolage_Grotesque, Chakra_Petch, DM_Sans } from "next/font/google";
 import { getStoreSettings } from "@/services/settings";
 import { absoluteUrl } from "@/lib/utils";
 import "./globals.css";
 
-const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const display = Saira({ subsets: ["latin"], weight: ["600", "700", "800"], variable: "--font-display", display: "swap" });
+const sans = DM_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const display = Bricolage_Grotesque({ subsets: ["latin"], weight: ["600", "700", "800"], variable: "--font-display", display: "swap" });
 const logo = Chakra_Petch({ subsets: ["latin"], weight: ["700"], variable: "--font-logo", display: "swap" });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0c",
+  themeColor: "#100f0d",
   width: "device-width",
   initialScale: 1,
 };

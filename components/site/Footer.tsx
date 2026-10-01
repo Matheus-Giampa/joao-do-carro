@@ -12,31 +12,30 @@ export function Footer({ settings: s }: { settings: StoreSettings }) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-20 overflow-hidden bg-ink-950 text-ink-300">
-      <div className="h-1 bg-gradient-to-r from-brand-700 via-brand-500 to-brand-700" />
-      <div className="container grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="relative mt-20 overflow-hidden rounded-t-[2rem] bg-ink-950 text-ink-300">
+            <div className="container grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-4">
           <Logo name={s.company_name} logoUrl={s.logo_url} />
           <p className="max-w-xs text-sm leading-relaxed">{s.slogan}</p>
           <div className="flex gap-2">
             {ig && (
-              <a href={ig} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 transition hover:bg-brand-600 hover:text-white">
+              <a href={ig} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="grid h-10 w-10 place-items-center rounded-full bg-white/5 transition hover:bg-brand-600 hover:text-white">
                 <InstagramIcon />
               </a>
             )}
             {fb && (
-              <a href={fb} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 transition hover:bg-brand-600 hover:text-white">
+              <a href={fb} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="grid h-10 w-10 place-items-center rounded-full bg-white/5 transition hover:bg-brand-600 hover:text-white">
                 <FacebookIcon />
               </a>
             )}
-            <a href={whatsappLink(s.whatsapp, generalMessage(s.company_name))} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 transition hover:bg-whatsapp hover:text-white">
+            <a href={whatsappLink(s.whatsapp, generalMessage(s.company_name))} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="grid h-10 w-10 place-items-center rounded-full bg-white/5 transition hover:bg-whatsapp hover:text-white">
               <WhatsAppIcon />
             </a>
           </div>
         </div>
 
         <div>
-          <h3 className="mb-4 font-display text-sm font-bold uppercase tracking-widest text-white">Navegação</h3>
+          <h3 className="mb-4 font-display text-base font-semibold text-white">Navegação</h3>
           <ul className="space-y-2.5 text-sm">
             {[
               ["/estoque", "Estoque completo"],
@@ -55,7 +54,7 @@ export function Footer({ settings: s }: { settings: StoreSettings }) {
         </div>
 
         <div>
-          <h3 className="mb-4 font-display text-sm font-bold uppercase tracking-widest text-white">Carrocerias</h3>
+          <h3 className="mb-4 font-display text-base font-semibold text-white">Carrocerias</h3>
           <ul className="grid grid-cols-2 gap-2.5 text-sm">
             {["Hatch", "Sedan", "SUV", "Picape", "Utilitário", "Conversível", "Minivan"].map((b) => (
               <li key={b}>
@@ -68,7 +67,7 @@ export function Footer({ settings: s }: { settings: StoreSettings }) {
         </div>
 
         <div>
-          <h3 className="mb-4 font-display text-sm font-bold uppercase tracking-widest text-white">Atendimento</h3>
+          <h3 className="mb-4 font-display text-base font-semibold text-white">Atendimento</h3>
           <ul className="space-y-3 text-sm">
             {s.whatsapp && (
               <li className="flex gap-3">

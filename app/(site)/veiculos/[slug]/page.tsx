@@ -159,7 +159,7 @@ export default async function VehiclePage({ params }: Props) {
                   <div key={label} className="flex items-start gap-3 rounded-xl bg-ink-50 p-3">
                     <Icon className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
                     <div className="min-w-0">
-                      <dt className="text-[11px] font-semibold uppercase tracking-wider text-ink-500">{label}</dt>
+                      <dt className="text-xs font-medium text-ink-500">{label}</dt>
                       <dd className="truncate font-semibold text-ink-950">{value}</dd>
                     </div>
                   </div>
@@ -195,6 +195,7 @@ export default async function VehiclePage({ params }: Props) {
                   vehicleId={v.id}
                   vehicleLabel={fullName}
                   whatsappHref={wa}
+                  compact
                 />
               </section>
             )}
@@ -273,15 +274,15 @@ export default async function VehiclePage({ params }: Props) {
 function TitleBlock({ v }: { v: Vehicle }) {
   return (
     <div>
-      <h1 className="font-display text-3xl font-extrabold uppercase leading-tight text-ink-950">
-        {v.brand} <span className="text-brand-600">{v.model}</span>
+      <h1 className="font-display text-3xl font-bold leading-tight tracking-tight text-ink-950">
+        {v.brand} {v.model}
       </h1>
       {v.version && <p className="mt-1 text-ink-600">{v.version}</p>}
       <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-ink-700">
-        <span className="rounded-lg bg-ink-100 px-2.5 py-1">{vehicleYears(v)}</span>
-        <span className="rounded-lg bg-ink-100 px-2.5 py-1">{formatKm(v.mileage)}</span>
-        <span className="rounded-lg bg-ink-100 px-2.5 py-1">{v.transmission}</span>
-        <span className="rounded-lg bg-ink-100 px-2.5 py-1">{v.fuel}</span>
+        <span className="rounded-full bg-ink-100 px-2.5 py-1">{vehicleYears(v)}</span>
+        <span className="rounded-full bg-ink-100 px-2.5 py-1">{formatKm(v.mileage)}</span>
+        <span className="rounded-full bg-ink-100 px-2.5 py-1">{v.transmission}</span>
+        <span className="rounded-full bg-ink-100 px-2.5 py-1">{v.fuel}</span>
       </div>
     </div>
   );

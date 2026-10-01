@@ -11,18 +11,19 @@ const config: Config = {
     extend: {
       colors: {
         // Identidade João do Carro (a partir da logo): preto grafite + branco + vermelho esportivo
+        // Neutros levemente quentes (tom "areia") — menos cara de portal/classificados
         ink: {
-          50: "#f6f6f7",
-          100: "#ececee",
-          200: "#d6d7db",
-          300: "#b1b3ba",
-          400: "#85888f",
-          500: "#64676f",
-          600: "#4d5057",
-          700: "#3a3c42",
-          800: "#232428",
-          900: "#141518",
-          950: "#0a0a0c",
+          50: "#f7f5f1",
+          100: "#eeeae3",
+          200: "#ddd7cd",
+          300: "#c0b8ac",
+          400: "#958c80",
+          500: "#706860",
+          600: "#555049",
+          700: "#3f3b36",
+          800: "#2a2723",
+          900: "#1a1815",
+          950: "#100f0d",
         },
         brand: {
           50: "#fff1f1",
@@ -47,8 +48,8 @@ const config: Config = {
         logo: ["var(--font-logo)", "var(--font-display)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        card: "0 1px 2px rgba(10,10,12,.06), 0 4px 16px rgba(10,10,12,.06)",
-        "card-hover": "0 2px 4px rgba(10,10,12,.08), 0 16px 40px rgba(10,10,12,.16)",
+        card: "0 1px 2px rgba(26,24,21,.04), 0 8px 24px -12px rgba(26,24,21,.12)",
+        "card-hover": "0 2px 4px rgba(26,24,21,.05), 0 24px 48px -16px rgba(26,24,21,.25)",
       },
       keyframes: {
         shimmer: {

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Menu, Phone, X } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { WhatsAppIcon } from "./icons";
@@ -16,6 +16,54 @@ const NAV = [
   { href: "/sobre", label: "Sobre" },
   { href: "/contato", label: "Contato" },
 ];
+
+/** "Ofertas" e "Estoque" têm o mesmo caminho: diferencia pelo ?oferta=1. */
+function useIsActive() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const isOffer = searchParams.get("oferta") === "1";
+  return (href: string) => {
+    const path = href.split("?")[0];
+    if (href.includes("oferta")) return pathname.startsWith(path) && isOffer;
+    if (path === "/estoque") return pathname.startsWith(path) && !isOffer;
+    return path === "/" ? pathname === "/" : pathname.startsWith(path);
+  };
+}
+
+function NavLinks({ variant, isActive = () => false }: { variant: "desktop" | "mobile"; isActive?: (href: string) => boolean }) {
+  return (
+    <>
+      {NAV.map((item) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          aria-current={isActive(item.href) ? "page" : undefined}
+          className={cn(
+            variant === "desktop"
+              ? "rounded-full px-3.5 py-2 text-[15px] font-medium text-ink-300 transition hover:text-white"
+              : "rounded-2xl px-4 py-4 font-display text-xl font-semibold text-ink-100 hover:bg-white/5",
+            isActive(item.href) && "bg-white/10 text-white",
+          )}
+        >
+          {item.label}
+        </Link>
+      ))}
+    </>
+  );
+}
+
+/** useSearchParams exige Suspense na exportação estática; o fallback mostra os links sem destaque. */
+function Nav({ variant }: { variant: "desktop" | "mobile" }) {
+  return (
+    <Suspense fallback={<NavLinks variant={variant} />}>
+      <ActiveNavLinks variant={variant} />
+    </Suspense>
+  );
+}
+
+function ActiveNavLinks({ variant }: { variant: "desktop" | "mobile" }) {
+  return <NavLinks variant={variant} isActive={useIsActive()} />;
+}
 
 export function Header({
   companyName,
@@ -31,6 +79,8 @@ export function Header({
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [menuTop, setMenuTop] = useState(68);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -41,16 +91,14 @@ export function Header({
   }, []);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    // O menu móvel abre logo abaixo do header (que pode estar abaixo da faixa de demonstração)
+    if (open && headerRef.current) setMenuTop(headerRef.current.getBoundingClientRect().bottom);
   }, [open]);
 
-  const isActive = (href: string) => {
-    const path = href.split("?")[0];
-    if (href.includes("oferta")) return false;
-    return path === "/" ? pathname === "/" : pathname.startsWith(path);
-  };
-
   return (
+    <>
     <header
+      ref={headerRef}
       className={cn(
         "sticky top-0 z-40 bg-ink-950/95 text-white backdrop-blur transition-shadow",
         scrolled && "shadow-lg shadow-black/30",
@@ -62,19 +110,7 @@ export function Header({
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Menu principal">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "relative rounded-lg px-3 py-2 text-sm font-semibold text-ink-200 transition hover:text-white",
-                isActive(item.href) &&
-                  "text-white after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded after:bg-brand-600",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+          <Nav variant="desktop" />
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -93,7 +129,7 @@ export function Header({
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="grid h-10 w-10 place-items-center rounded-xl bg-whatsapp text-white"
+            className="grid h-10 w-10 place-items-center rounded-full bg-whatsapp text-white"
             aria-label="Falar no WhatsApp"
           >
             <WhatsAppIcon />
@@ -101,7 +137,7 @@ export function Header({
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 text-white"
+            className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
           >
@@ -109,22 +145,18 @@ export function Header({
           </button>
         </div>
       </div>
+    </header>
 
+      {/* Fica FORA do <header>: o backdrop-blur dele "prende" elementos fixed e o menu abria com altura 0 */}
       {open && (
-        <div className="fixed inset-x-0 bottom-0 top-[68px] z-40 overflow-y-auto bg-ink-950 lg:hidden">
-          <nav className="container flex flex-col gap-1 py-6" aria-label="Menu móvel">
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "rounded-xl px-4 py-4 font-display text-lg font-semibold text-ink-100 hover:bg-white/5",
-                  isActive(item.href) && "bg-white/5 text-white",
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
+        <div className="fixed inset-x-0 bottom-0 z-40 overflow-y-auto bg-ink-950 text-white lg:hidden" style={{ top: menuTop }}>
+          {/* Fecha ao tocar num link (Estoque → Ofertas não muda o caminho, só a busca) */}
+          <nav
+            className="container flex flex-col gap-1 py-6"
+            aria-label="Menu móvel"
+            onClick={(e) => (e.target as HTMLElement).closest("a") && setOpen(false)}
+          >
+            <Nav variant="mobile" />
             <div className="mt-6 grid gap-3 border-t border-white/10 pt-6">
               <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp w-full py-4">
                 <WhatsAppIcon /> Falar no WhatsApp
@@ -138,6 +170,6 @@ export function Header({
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }

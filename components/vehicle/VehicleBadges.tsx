@@ -19,7 +19,7 @@ export function VehicleBadges({ vehicle, className }: { vehicle: Vehicle; classN
   return (
     <div className={cn("flex flex-wrap gap-1.5", className)}>
       {badges.map((b) => (
-        <span key={b.label} className={cn("rounded-md px-2 py-1 text-[11px] font-extrabold uppercase tracking-wider shadow-sm", b.className)}>
+        <span key={b.label} className={cn("rounded-full px-2.5 py-1 text-xs font-semibold shadow-sm", b.className)}>
           {b.label}
         </span>
       ))}
