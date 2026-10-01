@@ -10,6 +10,8 @@ export interface VehicleImage {
   url: string;
   storage_path: string | null;
   position: number;
+  /** Crédito da foto (fotos com licença livre usadas nos veículos de demonstração) */
+  credit?: { author: string; license: string; source: string } | null;
 }
 
 export interface Vehicle {

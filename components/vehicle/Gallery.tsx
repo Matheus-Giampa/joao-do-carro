@@ -90,6 +90,16 @@ export function Gallery({ images, alt, sold = false, children }: { images: VImag
         </div>
       </div>
 
+      {current.credit && (
+        <p className="text-xs text-ink-500">
+          Foto ilustrativa:{" "}
+          <a href={current.credit.source} target="_blank" rel="noopener noreferrer" className="underline decoration-ink-300 underline-offset-2 hover:text-ink-900">
+            {current.credit.author}
+          </a>{" "}
+          · {current.credit.license} · Wikimedia Commons
+        </p>
+      )}
+
       {list.length > 1 && (
         <div ref={thumbs} className="no-scrollbar flex gap-2 overflow-x-auto pb-1">
           {list.map((img, i) => (

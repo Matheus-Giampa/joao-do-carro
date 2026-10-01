@@ -37,12 +37,14 @@ export const DEMO_VEHICLES: Vehicle[] = demo.map((v, index) => {
     is_demo: true,
     created_at: createdAt,
     updated_at: createdAt,
-    images: [1, 2, 3, 4].map((n, position) => ({
-      id: `${id}-img-${n}`,
+    // Fotos reais com licença livre (Wikimedia Commons), com crédito do autor
+    images: v.photos.map((photo, position) => ({
+      id: `${id}-img-${position + 1}`,
       vehicle_id: id,
-      url: `/demo/${v.slug}-${n}.svg`,
+      url: photo.file,
       storage_path: null,
       position,
+      credit: { author: photo.author, license: photo.license, source: photo.source },
     })),
   };
 });

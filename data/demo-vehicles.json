@@ -20,8 +20,39 @@
     "featured": true,
     "is_offer": false,
     "is_new_arrival": false,
-    "options": ["Ar-condicionado", "Direção elétrica", "Vidros elétricos", "Travas elétricas", "Central multimídia", "Bluetooth", "Android Auto", "Apple CarPlay", "Câmera de ré", "Sensor de estacionamento", "Controle de estabilidade", "Controle de tração", "Airbags", "ABS", "Piloto automático", "Chave presencial"],
-    "description": "VEÍCULO DE DEMONSTRAÇÃO. Sedan médio com câmbio automático CVT, motor 2.0 flex e pacote completo de conforto e segurança. Texto fictício para testes — substitua pelos dados reais no painel administrativo."
+    "options": [
+      "Ar-condicionado",
+      "Direção elétrica",
+      "Vidros elétricos",
+      "Travas elétricas",
+      "Central multimídia",
+      "Bluetooth",
+      "Android Auto",
+      "Apple CarPlay",
+      "Câmera de ré",
+      "Sensor de estacionamento",
+      "Controle de estabilidade",
+      "Controle de tração",
+      "Airbags",
+      "ABS",
+      "Piloto automático",
+      "Chave presencial"
+    ],
+    "description": "VEÍCULO DE DEMONSTRAÇÃO. Sedan médio com câmbio automático CVT, motor 2.0 flex e pacote completo de conforto e segurança. Texto fictício para testes — substitua pelos dados reais no painel administrativo.",
+    "photos": [
+      {
+        "file": "/demo/toyota-corolla-xei-2024-1.jpg",
+        "author": "RL GNZLZ from Chile",
+        "license": "CC BY-SA 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Toyota_Corolla_2.0_XEi_2022.jpg"
+      },
+      {
+        "file": "/demo/toyota-corolla-xei-2024-2.jpg",
+        "author": "RL GNZLZ from Chile",
+        "license": "CC BY-SA 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Toyota_Corolla_2.0_XEi_2022_(52311011473).jpg"
+      }
+    ]
   },
   {
     "slug": "honda-civic-exl-2021",
@@ -36,16 +67,40 @@
     "fuel": "Flex",
     "transmission": "Automático",
     "body_type": "Sedan",
-    "color": "Preto",
-    "color_hex": "#23262d",
+    "color": "Cinza",
+    "color_hex": "#6b6f75",
     "doors": 4,
     "plate_end": "2",
     "status": "disponivel",
     "featured": true,
     "is_offer": true,
     "is_new_arrival": false,
-    "options": ["Ar-condicionado", "Direção elétrica", "Vidros elétricos", "Travas elétricas", "Central multimídia", "Bluetooth", "Android Auto", "Apple CarPlay", "Câmera de ré", "Bancos de couro", "Controle de estabilidade", "Controle de tração", "Airbags", "ABS", "Piloto automático"],
-    "description": "VEÍCULO DE DEMONSTRAÇÃO. Sedan com acabamento em couro, câmbio CVT e central multimídia com espelhamento. Texto fictício para testes."
+    "options": [
+      "Ar-condicionado",
+      "Direção elétrica",
+      "Vidros elétricos",
+      "Travas elétricas",
+      "Central multimídia",
+      "Bluetooth",
+      "Android Auto",
+      "Apple CarPlay",
+      "Câmera de ré",
+      "Bancos de couro",
+      "Controle de estabilidade",
+      "Controle de tração",
+      "Airbags",
+      "ABS",
+      "Piloto automático"
+    ],
+    "description": "VEÍCULO DE DEMONSTRAÇÃO. Sedan com acabamento em couro, câmbio CVT e central multimídia com espelhamento. Texto fictício para testes.",
+    "photos": [
+      {
+        "file": "/demo/honda-civic-exl-2021-1.jpg",
+        "author": "Elise240SX",
+        "license": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:2019_Honda_Civic_LX_Sedan_in_Modern_Steel_Metallic,_front_left,_2024-10-28.jpg"
+      }
+    ]
   },
   {
     "slug": "chevrolet-onix-lt-2023",
@@ -61,15 +116,35 @@
     "transmission": "Manual",
     "body_type": "Hatch",
     "color": "Branco",
-    "color_hex": "#f1f2f4",
+    "color_hex": "#f2f2f2",
     "doors": 4,
     "plate_end": "5",
     "status": "disponivel",
     "featured": true,
     "is_offer": false,
     "is_new_arrival": true,
-    "options": ["Ar-condicionado", "Direção elétrica", "Vidros elétricos", "Travas elétricas", "Central multimídia", "Bluetooth", "Android Auto", "Apple CarPlay", "Controle de estabilidade", "Airbags", "ABS"],
-    "description": "VEÍCULO DE DEMONSTRAÇÃO. Hatch compacto econômico com motor turbo e multimídia. Texto fictício para testes."
+    "options": [
+      "Ar-condicionado",
+      "Direção elétrica",
+      "Vidros elétricos",
+      "Travas elétricas",
+      "Central multimídia",
+      "Bluetooth",
+      "Android Auto",
+      "Apple CarPlay",
+      "Controle de estabilidade",
+      "Airbags",
+      "ABS"
+    ],
+    "description": "VEÍCULO DE DEMONSTRAÇÃO. Hatch compacto econômico com motor turbo e multimídia. Texto fictício para testes.",
+    "photos": [
+      {
+        "file": "/demo/chevrolet-onix-lt-2023-1.jpg",
+        "author": "RL GNZLZ",
+        "license": "CC BY-SA 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:2022_Chevrolet_Onix_Turbo_LTZ_(Chile)_front_view_(cropped).jpg"
+      }
+    ]
   },
   {
     "slug": "volkswagen-t-cross-highline-2022",
@@ -85,15 +160,46 @@
     "transmission": "Automático",
     "body_type": "SUV",
     "color": "Cinza",
-    "color_hex": "#6b7280",
+    "color_hex": "#7a7d82",
     "doors": 4,
     "plate_end": "9",
     "status": "disponivel",
     "featured": true,
     "is_offer": false,
     "is_new_arrival": false,
-    "options": ["Ar-condicionado", "Direção elétrica", "Vidros elétricos", "Travas elétricas", "Central multimídia", "Bluetooth", "Android Auto", "Apple CarPlay", "Câmera de ré", "Sensor de estacionamento", "Controle de estabilidade", "Controle de tração", "Airbags", "ABS", "Piloto automático", "Chave presencial"],
-    "description": "VEÍCULO DE DEMONSTRAÇÃO. SUV compacto com motor turbo, painel digital e assistentes de condução. Texto fictício para testes."
+    "options": [
+      "Ar-condicionado",
+      "Direção elétrica",
+      "Vidros elétricos",
+      "Travas elétricas",
+      "Central multimídia",
+      "Bluetooth",
+      "Android Auto",
+      "Apple CarPlay",
+      "Câmera de ré",
+      "Sensor de estacionamento",
+      "Controle de estabilidade",
+      "Controle de tração",
+      "Airbags",
+      "ABS",
+      "Piloto automático",
+      "Chave presencial"
+    ],
+    "description": "VEÍCULO DE DEMONSTRAÇÃO. SUV compacto com motor turbo, painel digital e assistentes de condução. Texto fictício para testes.",
+    "photos": [
+      {
+        "file": "/demo/volkswagen-t-cross-highline-2022-1.jpg",
+        "author": "Alexander Migl",
+        "license": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Volkswagen_T-Cross_1X7A0366.jpg"
+      },
+      {
+        "file": "/demo/volkswagen-t-cross-highline-2022-2.jpg",
+        "author": "Alexander Migl",
+        "license": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Volkswagen_T-Cross_1X7A0364.jpg"
+      }
+    ]
   },
   {
     "slug": "jeep-compass-longitude-2023",
@@ -108,16 +214,48 @@
     "fuel": "Flex",
     "transmission": "Automático",
     "body_type": "SUV",
-    "color": "Azul",
-    "color_hex": "#1f4e8c",
+    "color": "Prata",
+    "color_hex": "#b8bec7",
     "doors": 4,
     "plate_end": "1",
     "status": "disponivel",
     "featured": true,
     "is_offer": true,
     "is_new_arrival": false,
-    "options": ["Ar-condicionado", "Direção elétrica", "Vidros elétricos", "Travas elétricas", "Central multimídia", "Bluetooth", "Android Auto", "Apple CarPlay", "Câmera de ré", "Sensor de estacionamento", "Bancos de couro", "Controle de estabilidade", "Controle de tração", "Airbags", "ABS", "Piloto automático", "Chave presencial"],
-    "description": "VEÍCULO DE DEMONSTRAÇÃO. SUV médio com motor turbo, bancos em couro e pacote completo de segurança. Texto fictício para testes."
+    "options": [
+      "Ar-condicionado",
+      "Direção elétrica",
+      "Vidros elétricos",
+      "Travas elétricas",
+      "Central multimídia",
+      "Bluetooth",
+      "Android Auto",
+      "Apple CarPlay",
+      "Câmera de ré",
+      "Sensor de estacionamento",
+      "Bancos de couro",
+      "Controle de estabilidade",
+      "Controle de tração",
+      "Airbags",
+      "ABS",
+      "Piloto automático",
+      "Chave presencial"
+    ],
+    "description": "VEÍCULO DE DEMONSTRAÇÃO. SUV médio com motor turbo, bancos em couro e pacote completo de segurança. Texto fictício para testes.",
+    "photos": [
+      {
+        "file": "/demo/jeep-compass-longitude-2023-1.jpg",
+        "author": "Alexander Migl",
+        "license": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Jeep_Compass_(MP)_PHEV_Facelift_1X7A0140.jpg"
+      },
+      {
+        "file": "/demo/jeep-compass-longitude-2023-2.jpg",
+        "author": "Alexander Migl",
+        "license": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Jeep_Compass_(MP)_PHEV_Facelift_1X7A0139.jpg"
+      }
+    ]
   },
   {
     "slug": "fiat-toro-volcano-2022",
@@ -132,16 +270,40 @@
     "fuel": "Diesel",
     "transmission": "Automático",
     "body_type": "Picape",
-    "color": "Vermelho",
-    "color_hex": "#b3202a",
+    "color": "Branco",
+    "color_hex": "#f2f2f2",
     "doors": 4,
     "plate_end": "4",
     "status": "disponivel",
     "featured": false,
     "is_offer": false,
     "is_new_arrival": false,
-    "options": ["Ar-condicionado", "Direção elétrica", "Vidros elétricos", "Travas elétricas", "Central multimídia", "Bluetooth", "Android Auto", "Apple CarPlay", "Câmera de ré", "Bancos de couro", "Controle de estabilidade", "Controle de tração", "Airbags", "ABS", "Piloto automático"],
-    "description": "VEÍCULO DE DEMONSTRAÇÃO. Picape média com tração 4x4, motor diesel e câmbio automático. Texto fictício para testes."
+    "options": [
+      "Ar-condicionado",
+      "Direção elétrica",
+      "Vidros elétricos",
+      "Travas elétricas",
+      "Central multimídia",
+      "Bluetooth",
+      "Android Auto",
+      "Apple CarPlay",
+      "Câmera de ré",
+      "Bancos de couro",
+      "Controle de estabilidade",
+      "Controle de tração",
+      "Airbags",
+      "ABS",
+      "Piloto automático"
+    ],
+    "description": "VEÍCULO DE DEMONSTRAÇÃO. Picape média com tração 4x4, motor diesel e câmbio automático. Texto fictício para testes.",
+    "photos": [
+      {
+        "file": "/demo/fiat-toro-volcano-2022-1.jpg",
+        "author": "Just a Man",
+        "license": "CC BY 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:2022_Fiat_Toro_2.0_Multijet_Volcano.jpg"
+      }
+    ]
   },
   {
     "slug": "hyundai-hb20-comfort-2020",
@@ -156,16 +318,32 @@
     "fuel": "Flex",
     "transmission": "Manual",
     "body_type": "Hatch",
-    "color": "Branco",
-    "color_hex": "#eef0f3",
+    "color": "Prata",
+    "color_hex": "#b8bec7",
     "doors": 4,
     "plate_end": "8",
     "status": "vendido",
     "featured": false,
     "is_offer": false,
     "is_new_arrival": false,
-    "options": ["Ar-condicionado", "Direção elétrica", "Vidros elétricos", "Travas elétricas", "Bluetooth", "Airbags", "ABS"],
-    "description": "VEÍCULO DE DEMONSTRAÇÃO (exemplo de anúncio VENDIDO). Hatch econômico ideal para o dia a dia. Texto fictício para testes."
+    "options": [
+      "Ar-condicionado",
+      "Direção elétrica",
+      "Vidros elétricos",
+      "Travas elétricas",
+      "Bluetooth",
+      "Airbags",
+      "ABS"
+    ],
+    "description": "VEÍCULO DE DEMONSTRAÇÃO (exemplo de anúncio VENDIDO). Hatch econômico ideal para o dia a dia. Texto fictício para testes.",
+    "photos": [
+      {
+        "file": "/demo/hyundai-hb20-comfort-2020-1.jpg",
+        "author": "Just a Man",
+        "license": "CC BY 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:2025_Hyundai_HB20_1.6_Comfort_Plus.jpg"
+      }
+    ]
   },
   {
     "slug": "renault-kangoo-express-2020",
@@ -181,15 +359,28 @@
     "transmission": "Manual",
     "body_type": "Utilitário",
     "color": "Branco",
-    "color_hex": "#f4f5f7",
+    "color_hex": "#f2f2f2",
     "doors": 4,
     "plate_end": "3",
     "status": "reservado",
     "featured": false,
     "is_offer": false,
     "is_new_arrival": false,
-    "options": ["Direção elétrica", "Travas elétricas", "Airbags", "ABS"],
-    "description": "VEÍCULO DE DEMONSTRAÇÃO (exemplo de anúncio RESERVADO). Utilitário com amplo espaço de carga. Texto fictício para testes."
+    "options": [
+      "Direção elétrica",
+      "Travas elétricas",
+      "Airbags",
+      "ABS"
+    ],
+    "description": "VEÍCULO DE DEMONSTRAÇÃO (exemplo de anúncio RESERVADO). Utilitário com amplo espaço de carga. Texto fictício para testes.",
+    "photos": [
+      {
+        "file": "/demo/renault-kangoo-express-2020-1.jpg",
+        "author": "Just a Man",
+        "license": "CC BY 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:2021_Renault_Kangoo_1.6_SCe_Express.jpg"
+      }
+    ]
   },
   {
     "slug": "mini-cooper-s-cabrio-2019",
@@ -204,16 +395,52 @@
     "fuel": "Gasolina",
     "transmission": "Automático",
     "body_type": "Conversível",
-    "color": "Verde",
-    "color_hex": "#1e5a43",
+    "color": "Branco",
+    "color_hex": "#f2f2f2",
     "doors": 2,
     "plate_end": "6",
     "status": "disponivel",
     "featured": true,
     "is_offer": false,
     "is_new_arrival": true,
-    "options": ["Ar-condicionado", "Direção elétrica", "Vidros elétricos", "Travas elétricas", "Central multimídia", "Bluetooth", "Apple CarPlay", "Sensor de estacionamento", "Bancos de couro", "Controle de estabilidade", "Controle de tração", "Airbags", "ABS", "Piloto automático", "Chave presencial"],
-    "description": "VEÍCULO DE DEMONSTRAÇÃO. Conversível esportivo com capota elétrica e motor turbo. Texto fictício para testes."
+    "options": [
+      "Ar-condicionado",
+      "Direção elétrica",
+      "Vidros elétricos",
+      "Travas elétricas",
+      "Central multimídia",
+      "Bluetooth",
+      "Apple CarPlay",
+      "Sensor de estacionamento",
+      "Bancos de couro",
+      "Controle de estabilidade",
+      "Controle de tração",
+      "Airbags",
+      "ABS",
+      "Piloto automático",
+      "Chave presencial"
+    ],
+    "description": "VEÍCULO DE DEMONSTRAÇÃO. Conversível esportivo com capota elétrica e motor turbo. Texto fictício para testes.",
+    "photos": [
+      {
+        "file": "/demo/mini-cooper-s-cabrio-2019-1.jpg",
+        "author": "Damian B Oh",
+        "license": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Mini_F57_LCI_Convertible_Cooper_S_Pepper_White_(7).jpg"
+      },
+      {
+        "file": "/demo/mini-cooper-s-cabrio-2019-2.jpg",
+        "author": "Damian B Oh",
+        "license": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Mini_F57_LCI_Convertible_Cooper_S_Pepper_White_(3).jpg"
+      },
+      {
+        "file": "/demo/mini-cooper-s-cabrio-2019-3.jpg",
+        "author": "Damian B Oh",
+        "license": "CC BY-SA 4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Mini_F57_LCI_Convertible_Cooper_S_Pepper_White_(1).jpg"
+      }
+    ]
   },
   {
     "slug": "chevrolet-spin-premier-2023",
@@ -228,15 +455,37 @@
     "fuel": "Flex",
     "transmission": "Automático",
     "body_type": "Minivan",
-    "color": "Prata",
-    "color_hex": "#c3c8cf",
+    "color": "Preto",
+    "color_hex": "#1b1b1d",
     "doors": 4,
     "plate_end": "0",
     "status": "disponivel",
     "featured": false,
     "is_offer": false,
     "is_new_arrival": true,
-    "options": ["Ar-condicionado", "Direção elétrica", "Vidros elétricos", "Travas elétricas", "Central multimídia", "Bluetooth", "Android Auto", "Apple CarPlay", "Câmera de ré", "Sensor de estacionamento", "Controle de estabilidade", "Airbags", "ABS"],
-    "description": "VEÍCULO DE DEMONSTRAÇÃO. Minivan de 7 lugares, ideal para famílias. Texto fictício para testes."
+    "options": [
+      "Ar-condicionado",
+      "Direção elétrica",
+      "Vidros elétricos",
+      "Travas elétricas",
+      "Central multimídia",
+      "Bluetooth",
+      "Android Auto",
+      "Apple CarPlay",
+      "Câmera de ré",
+      "Sensor de estacionamento",
+      "Controle de estabilidade",
+      "Airbags",
+      "ABS"
+    ],
+    "description": "VEÍCULO DE DEMONSTRAÇÃO. Minivan de 7 lugares, ideal para famílias. Texto fictício para testes.",
+    "photos": [
+      {
+        "file": "/demo/chevrolet-spin-premier-2023-1.jpg",
+        "author": "RL GNZLZ",
+        "license": "CC BY-SA 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Chevrolet_Spin_1.8_Premier_2022.jpg"
+      }
+    ]
   }
 ]
