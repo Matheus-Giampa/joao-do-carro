@@ -3,6 +3,7 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon, facebookUrl, instagramUrl } from "./icons";
 import { formatPhone } from "@/lib/utils";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { whatsappLink, generalMessage } from "@/lib/whatsapp";
 import type { StoreSettings } from "@/types";
 
@@ -43,6 +44,8 @@ export function Footer({ settings: s }: { settings: StoreSettings }) {
               ["/financiamento", "Simular financiamento"],
               ["/sobre", "Sobre a loja"],
               ["/contato", "Contato"],
+              // Site real: painel de verdade. Demonstração (sem banco): painel de exemplo
+              [isSupabaseConfigured ? "/admin" : "/painel-demo", "Área da loja"],
             ].map(([href, label]) => (
               <li key={href}>
                 <Link href={href} className="transition hover:text-white">
